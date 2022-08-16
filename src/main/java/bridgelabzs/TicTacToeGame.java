@@ -18,28 +18,7 @@ public class TicTacToeGame {
 
 	}
 	
-	private static void checkFreeSpace() {
-		boolean isSpaceAvailable = false;
-        int numOfFreeSpaces = 0;
-        for(int index=1;index<board.length;index++)
-        {
-            if((board[index] == ' '))
-            {
-                isSpaceAvailable = true;
-                numOfFreeSpaces++;
-            }
-        }
-        if(isSpaceAvailable == false)
-        {
-            System.err.println("Board is full! You can't make another move");
-
-        }
-        else
-        {
-            System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
-        }
-    }
-	  
+		  
 	private static boolean isValidMove (char[][] board, String position) {
 		switch(position) {
 			case "1":
@@ -98,4 +77,41 @@ public class TicTacToeGame {
 		System.out.println("Computer chose " + computerMove);
 		placeMove(board, Integer.toString(computerMove), 'O');
 	}
+
+
+	private static void placeMove(char[][] board, String position, char symbol) {
+		switch(position) {
+		case "1":
+			board[0][0] = symbol;
+			break;
+		case "2":
+			board[0][1] = symbol;
+			break;
+		case "3":
+			board[0][2] = symbol;
+			break;
+		case "4":
+			board[1][0] = symbol;
+			break;
+		case "5":
+			board[1][1] = symbol;
+			break;
+		case "6":
+			board[1][2] = symbol;
+			break;
+		case "7":
+			board[2][0] = symbol;
+			break;
+		case "8":
+			board[2][1] = symbol;
+			break;
+		case "9":
+			board[2][2] = symbol;
+			break;
+		default:
+			System.out.println(":(");
+	}
+}
+		
+	
 }
