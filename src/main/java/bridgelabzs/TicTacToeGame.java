@@ -19,29 +19,43 @@ public class TicTacToeGame {
 
 	}
 	private static void makeMove() {
-		// TODO Auto-generated method stub
-		
-        System.out.println("Choose your location(1-9): ");
+		System.out.println("Choose your location(1-9): ");
         int position = scanner.nextInt();
-        if (position > 9 && position < 1)
-        {
+        if (position > 9 && position < 1) {
             System.err.println("Enter a valid location b/w 1 to 9");
             makeMove();
-        }
-        else if (board[position] != ' ')
-        {
+        } else if (board[position] != ' ') {
             System.err.println("You already chosen this! Enter a valid location");
             makeMove();
+        } else {
+            board[position] = userLetter;
+            showBoard();
+            checkFreeSpace();
+            makeMove();
+        }	}
+	private static void checkFreeSpace() {
+		boolean isSpaceAvailable = false;
+        int numOfFreeSpaces = 0;
+        for(int index=1;index<board.length;index++)
+        {
+            if((board[index] == ' '))
+            {
+                isSpaceAvailable = true;
+                numOfFreeSpaces++;
+            }
+        }
+        if(isSpaceAvailable == false)
+        {
+            System.err.println("Board is full! You can't make another move");
+
         }
         else
         {
-            board[position] = userLetter;
-            showBoard();
-            makeMove();
+            System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
         }
-    
+    }
 		
-	}
+	
 	private static void showBoard() {
 		// TODO Auto-generated method stub
 		System.out.println( board[1] + " | " + board[2] + " | " + board[3] );
