@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 
-	static char[] board = new char[10];
-	static char userLetter;
-    static char computerLetter;
-    static Scanner scanner = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 	Scanner scanner = new Scanner(System.in);
 		
@@ -77,7 +74,21 @@ public class TicTacToeGame {
 		System.out.println("Computer chose " + computerMove);
 		placeMove(board, Integer.toString(computerMove), 'O');
 	}
-
+	private static boolean hasContestantWon(char[][] board, char symbol) {
+		if ((board[0][0] == symbol && board [0][1] == symbol && board [0][2] == symbol) ||
+			(board[1][0] == symbol && board [1][1] == symbol && board [1][2] == symbol) ||
+			(board[2][0] == symbol && board [2][1] == symbol && board [2][2] == symbol) ||
+			
+			(board[0][0] == symbol && board [1][0] == symbol && board [2][0] == symbol) ||
+			(board[0][1] == symbol && board [1][1] == symbol && board [2][1] == symbol) ||
+			(board[0][2] == symbol && board [1][2] == symbol && board [2][2] == symbol) ||
+			
+			(board[0][0] == symbol && board [1][1] == symbol && board [2][2] == symbol) ||
+			(board[0][2] == symbol && board [1][1] == symbol && board [2][0] == symbol) ) {
+			return true;
+		}
+		return false;
+	}
 
 	private static void placeMove(char[][] board, String position, char symbol) {
 		switch(position) {
