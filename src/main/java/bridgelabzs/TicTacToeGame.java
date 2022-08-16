@@ -9,13 +9,12 @@ public class TicTacToeGame {
     static char computerLetter;
     static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	Scanner scanner = new Scanner(System.in);
 		
-		 createEmptyBoard();
-		 chooseLetter();
-		 showBoard();
-		 makeMove();
-
+		char[][] board = {{' ', ' ', ' '},
+				 	      {' ', ' ', ' '}, 
+				 	      {' ', ' ', ' '}};
+		showBoard(board);
 
 	}
 	private static void makeMove() {
@@ -54,16 +53,13 @@ public class TicTacToeGame {
             System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
         }
     }
-		
-	
-	private static void showBoard() {
-		// TODO Auto-generated method stub
-		System.out.println( board[1] + " | " + board[2] + " | " + board[3] );
-        System.out.println("----------");
-        System.out.println( board[4] + " | " + board[5] + " | " + board[6] );
-        System.out.println("----------");
-        System.out.println( board[7] + " | " + board[8] + " | " + board[9] );
-		
+	   
+	private static void showBoard(char[][] board) {
+		System.out.println(board[0][0] + "|" +  board[0][1] + "|" +  board[0][2] );
+		System.out.println("-+-+-");
+		System.out.println(board[1][0] + "|" +  board[1][1] + "|" +  board[1][2] );
+		System.out.println("-+-+-");
+		System.out.println(board[2][0] + "|" +  board[2][1] + "|" +  board[2][2] );
 	}
 	private static void chooseLetter() {
 		// TODO Auto-generated method stub
@@ -74,13 +70,16 @@ public class TicTacToeGame {
         
 		
 	}
-	private static void createEmptyBoard() {
-		// TODO Auto-generated method stub
-		for(int index=1; index<board.length;index++)
-        {
-            board[index] = ' ';
-        }
-		
+	private static void computerTurn(char[][] board) {
+		Random rand = new Random();
+		int computerMove;
+		while (true) {
+			computerMove = rand.nextInt(9) + 1;
+			if (isValidMove(board, Integer.toString(computerMove))) {
+				break;
+			}
+		}
+		System.out.println("Computer chose " + computerMove);
+		placeMove(board, Integer.toString(computerMove), 'O');
 	}
-
 }
