@@ -1,5 +1,6 @@
 package bridgelabzs;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -12,9 +13,49 @@ public class TicTacToeGame {
 				 	      {' ', ' ', ' '}, 
 				 	      {' ', ' ', ' '}};
 		showBoard(board);
+		while (true) {
+			playerTurn(board, scanner);
+			if (isGameFinished(board)){
+				break;
+			}
+			showBoard(board);
+			
+			computerTurn(board);
+			if (isGameFinished(board)){
+				break;
+			}
+			showBoard(board);
+		}
+		scanner.close();
 
 	}
-	
+private static boolean isGameFinished(char[][] board) {
+		
+		if (hasContestantWon(board, 'X')) {	
+			showBoard(board);
+			System.out.println("Player wins!");
+			return true;
+		}
+		
+		if (hasContestantWon(board, 'O')) {	
+			showBoard(board);
+			System.out.println("Computer wins!");
+			return true;
+		}
+		
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == ' ') {
+					return false;
+				}
+			}
+		}
+		showBoard(board);
+		System.out.println("The game ended in a tie!");
+		return true;
+	}
+
+
 		  
 	private static boolean isValidMove (char[][] board, String position) {
 		switch(position) {
