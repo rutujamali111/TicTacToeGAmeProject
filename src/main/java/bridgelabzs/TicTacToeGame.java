@@ -72,15 +72,20 @@ public class TicTacToeGame {
 		System.out.println("-+-+-");
 		System.out.println(board[2][0] + "|" +  board[2][1] + "|" +  board[2][2] );
 	}
-	private static void chooseLetter() {
-		// TODO Auto-generated method stub
-		
-        System.out.println("Choose a letter :: X or O : ");
-        userLetter = scanner.next().toUpperCase().charAt(0);
-        computerLetter = (userLetter == 'X') ? 'O' : 'X';
-        
-		
+	private static void playerTurn(char[][] board, Scanner scanner) {
+		String userInput;
+		while (true) {
+			System.out.println("Where would you like to play? (1-9)");
+			userInput = scanner.nextLine();
+			if (isValidMove(board, userInput)){
+				break;
+			} else {
+				System.out.println(userInput + " is not a valid move.");
+			}
+		}
+		placeMove(board, userInput, 'X');
 	}
+
 	private static void computerTurn(char[][] board) {
 		Random rand = new Random();
 		int computerMove;
