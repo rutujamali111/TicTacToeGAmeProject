@@ -17,21 +17,7 @@ public class TicTacToeGame {
 		showBoard(board);
 
 	}
-	private static void makeMove() {
-		System.out.println("Choose your location(1-9): ");
-        int position = scanner.nextInt();
-        if (position > 9 && position < 1) {
-            System.err.println("Enter a valid location b/w 1 to 9");
-            makeMove();
-        } else if (board[position] != ' ') {
-            System.err.println("You already chosen this! Enter a valid location");
-            makeMove();
-        } else {
-            board[position] = userLetter;
-            showBoard();
-            checkFreeSpace();
-            makeMove();
-        }	}
+	
 	private static void checkFreeSpace() {
 		boolean isSpaceAvailable = false;
         int numOfFreeSpaces = 0;
@@ -53,7 +39,32 @@ public class TicTacToeGame {
             System.out.println("Free space is available! you have "+numOfFreeSpaces+ " moves left");
         }
     }
-	   
+	  
+	private static boolean isValidMove (char[][] board, String position) {
+		switch(position) {
+			case "1":
+				return (board[0][0] == ' ');
+			case "2":
+				return (board[0][1] == ' ');
+			case "3":
+				return (board[0][2] == ' ');
+			case "4":
+				return (board[1][0] == ' ');
+			case "5":
+				return (board[1][1] == ' ');
+			case "6":
+				return (board[1][2] == ' ');
+			case "7":
+				return (board[2][0] == ' ');
+			case "8":
+				return (board[2][1] == ' ');
+			case "9":
+				return (board[2][2] == ' ');
+			default:
+				return false;
+		}
+	}
+
 	private static void showBoard(char[][] board) {
 		System.out.println(board[0][0] + "|" +  board[0][1] + "|" +  board[0][2] );
 		System.out.println("-+-+-");
