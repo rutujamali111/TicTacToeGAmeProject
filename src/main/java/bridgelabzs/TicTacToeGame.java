@@ -7,14 +7,40 @@ public class TicTacToeGame {
 	static char[] board = new char[10];
 	static char userLetter;
     static char computerLetter;
+    static Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 
+		
 		 createEmptyBoard();
 		 chooseLetter();
 		 showBoard();
+		 makeMove();
 
 
+	}
+	private static void makeMove() {
+		// TODO Auto-generated method stub
+		
+        System.out.println("Choose your location(1-9): ");
+        int position = scanner.nextInt();
+        if (position > 9 && position < 1)
+        {
+            System.err.println("Enter a valid location b/w 1 to 9");
+            makeMove();
+        }
+        else if (board[position] != ' ')
+        {
+            System.err.println("You already chosen this! Enter a valid location");
+            makeMove();
+        }
+        else
+        {
+            board[position] = userLetter;
+            showBoard();
+            makeMove();
+        }
+    
+		
 	}
 	private static void showBoard() {
 		// TODO Auto-generated method stub
@@ -27,11 +53,11 @@ public class TicTacToeGame {
 	}
 	private static void chooseLetter() {
 		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner(System.in);
+		
         System.out.println("Choose a letter :: X or O : ");
         userLetter = scanner.next().toUpperCase().charAt(0);
         computerLetter = (userLetter == 'X') ? 'O' : 'X';
-        scanner.close();
+        
 		
 	}
 	private static void createEmptyBoard() {
